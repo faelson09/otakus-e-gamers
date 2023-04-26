@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  background-color: white;
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: "teste";
+  font-style: normal;
+  font-weight: 500;
+  src: url(/font/SF-Pro-Display-Regular.ttf);
+}
+
+#navbar{
+  font-family: "teste";
+}
+
+
+::-webkit-scrollbar {
+	width: 4px;
+	height: 0px;
+}
+
+::-webkit-scrollbar-track {
+	background: none;
+  opacity: 100;
+  width: 0px;
+  position: absolute;
+  left: 0%;
+
+}
+
+::-webkit-scrollbar-thumb {
+	background: #0000009e;
+	border-radius: 18px;
+}
