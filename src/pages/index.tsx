@@ -1,124 +1,81 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css/skyblue';
+import '@splidejs/react-splide/css/sea-green';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const bests = [
+    {
+      nome: "naruto",
+      descricao: "Naruto é uma série de mangá escrita e ilustrada por Masashi Kishimoto, que conta a história de Naruto Uzumaki, um jovem ninja que constantemente procura por reconhecimento e sonha em se tornar Hokage, o ninja líder de sua vila.",
+      url_da_image: "https://i.kinja-img.com/gawker-media/image/upload/c_fit,f_auto,g_center,q_60,w_1315/c8b7d39a00d62c26f4ec2f8fc9986cda.jpg"
+    },
+    {
+      nome: "tenseey shitara slime",
+      descricao: "Tensei Shitara Slime Datta Ken também conhecido como TenSura ou Slime Isekai é uma série de light novels de fantasia japonesa escrita por Fuse e ilustrada por Mitz Vah. Ele foi serializado online entre 2013 e 2016 no site de publicação de light novels Shōsetsuka ni Narō.",
+      url_da_image: "https://images.saymedia-content.com/.image/c_limit%2Ccs_srgb%2Cq_auto:eco%2Cw_700/MTc0NDgwMDE3Mzc0MzI0MDcy/animes-like-tensei-shitara-slime-datta-ken.webp"
+    },
+    {
+      nome: "boku no pico",
+      descricao: "Boku no Pico é uma série de OVA dos gêneros shotacon e hentai, composta por apenas três episódios dirigidos por Yatabe, Katsuyoshi. O produtor descreveu-o como 'o primeiro anime shotacon do mundo'.",
+      url_da_image: "https://cdn.myanimelist.net/images/anime/12/39497l.jpg"
+    },
+    {
+      nome: "7 seeds",
+      descricao: "7 Seeds é uma série de mangá japonesa escrita e ilustrada por Yumi Tamura. É ambientado em um futuro pós-apocalíptico, tempo suficiente depois que um meteorito atinge a Terra para que novas espécies",
+      url_da_image: "https://1.bp.blogspot.com/-RqCLFP_bwXo/XpzuP2EX_6I/AAAAAAAABVs/8c-fktQdmEs-PQnWOt_ObLBZ0VabsUEMwCLcBGAsYHQ/s1600/7-Seeds-anime.jpg"
+    },
+    {
+      nome: "dota blood of zeus",
+      descricao: "loa khj i uidsiun vui hid9dh9 d98dhidu",
+      url_da_image: "https://rare-gallery.com/mocahbig/1310137-Heron-Blood-of-Zeus-Hera-Blood-of-Zeus-Hermes.jpg"
+    },
+  ]
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <main className="min-h-screen flex flex-col">
+      <div className='w-full' id='bests'>
+        <Splide
+          options={{
+            rewind: true,
+            gap: '1rem',
+            autoplay: true,
+            type: 'loop',
+            pauseOnHover: false,
+            resetProgress: false,
+            height: '24rem',
+            interval: 4000,
+            speed: 1000,
+            easing: 'ease'
+          }}
+          aria-label="Bests"
+        >
+          {bests.map((best, index) => (
+            <SplideSlide key={index}>
+              <div className='h-96 relative w-full' onClick={() => console.log("ola")}>
+                <img src={best.url_da_image} className='w-full h-full object-cover' alt="" />
+                <div className='absolute z-10 bottom-3 left-3 w-[350px] h-fit min-h-[144px] bg-black/20 p-5'>
+                  <h1 className={`${inter.className} text-white capitalize text-3xl font-semibold mb-2 break-words`}>
+                    {best.nome != null
+                      ? best.nome.length > 30
+                        ? best.nome.slice(0, 30) + "..."
+                        : best.nome
+                      : ""}</h1>
+                  <p className='text-white capitalize text-sm leading-5 break-words'>{best.descricao != null
+                    ? best.descricao.length > 130
+                      ? best.descricao.slice(0, 130) + "..."
+                      : best.descricao
+                    : ""}</p>
+                </div>
+
+              </div>
+            </SplideSlide>
+          ))}
+        </Splide>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`${inter.className} mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p
-            className={`${inter.className} m-0 max-w-[30ch] text-sm opacity-50`}
-          >
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <div>ola</div>
     </main>
   )
 }
+
