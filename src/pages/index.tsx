@@ -2,6 +2,11 @@ import { Inter } from 'next/font/google'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css/skyblue';
 import '@splidejs/react-splide/css/sea-green';
+import Navbar from '@/components/Navbar';
+import Xarrow, { Xwrapper } from "react-xarrows";
+import Link from 'next/link';
+import Image from 'next/image';
+import Post from '@/components/Post';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -33,49 +38,119 @@ export default function Home() {
       url_da_image: "https://rare-gallery.com/mocahbig/1310137-Heron-Blood-of-Zeus-Hera-Blood-of-Zeus-Hermes.jpg"
     },
   ]
+  const company = [
+    {
+      name: "faelson09",
+      length: 14,
+      color: "#0041f5",
+      image: "/images/faelson09.png"
+    },
+    {
+      name: "otomes_sr",
+      length: 7,
+      color: "#3b2452",
+      image: "/otmessr.png"
+    },
+    {
+      name: "otakus & gamer",
+      length: 4,
+      color: "pink",
+      image: "/images/cog.jpg"
+    },
+    {
+      name: "otakus e gamer",
+      length: 4,
+      color: "yellow",
+      image: "/.png"
+    },
+    {
+      name: "otakus e gamer",
+      length: 4,
+      color: "brown",
+      image: "/.png"
+    },
+    {
+      name: "otakus e gamer",
+      length: 4,
+      color: "grey",
+      image: "/.png"
+    },
+  ]
   return (
-    <main className="min-h-screen flex flex-col">
-      <div className='w-full' id='bests'>
-        <Splide
-          options={{
-            rewind: true,
-            gap: '1rem',
-            autoplay: true,
-            type: 'loop',
-            pauseOnHover: false,
-            resetProgress: false,
-            height: '24rem',
-            interval: 4000,
-            speed: 1000,
-            easing: 'ease'
-          }}
-          aria-label="Bests"
-        >
-          {bests.map((best, index) => (
-            <SplideSlide key={index}>
-              <div className='h-96 relative w-full' onClick={() => console.log("ola")}>
-                <img src={best.url_da_image} className='w-full h-full object-cover' alt="" />
-                <div className='absolute z-10 bottom-3 left-3 w-[350px] h-fit min-h-[144px] bg-black/20 p-5'>
-                  <h1 className={`${inter.className} text-white capitalize text-3xl font-semibold mb-2 break-words`}>
-                    {best.nome != null
-                      ? best.nome.length > 30
-                        ? best.nome.slice(0, 30) + "..."
-                        : best.nome
-                      : ""}</h1>
-                  <p className='text-white capitalize text-sm leading-5 break-words'>{best.descricao != null
-                    ? best.descricao.length > 130
-                      ? best.descricao.slice(0, 130) + "..."
-                      : best.descricao
-                    : ""}</p>
-                </div>
+    <>
+      <Navbar />
+      <main className="min-h-screen flex flex-col items-center overflow-x-hidden">
+        <div className='min-[1600px]:w-[1600px] flex flex-col items-center'>
+          <div className='w-full' id='bests'>
+            <Splide
+              options={{
+                rewind: true,
+                gap: '1rem',
+                autoplay: true,
+                type: 'loop',
+                pauseOnHover: false,
+                resetProgress: false,
+                height: '24rem',
+                interval: 4000,
+                speed: 1000,
+                easing: 'ease'
+              }}
+              aria-label="Bests"
+            >
+              {bests.map((best, index) => (
+                <SplideSlide key={index}>
+                  <div className='h-96 relative w-full' onClick={() => console.log("ola")}>
+                    <img src={best.url_da_image} className='w-full h-full object-cover' alt="" />
+                    <div className='absolute z-10 bottom-3 left-3 w-[350px] h-fit min-h-[144px] bg-black/20 p-5'>
+                      <h1 className={`${inter.className} text-white capitalize text-3xl font-semibold mb-2 break-words`}>
+                        {best.nome != null
+                          ? best.nome.length > 30
+                            ? best.nome.slice(0, 30) + "..."
+                            : best.nome
+                          : ""}</h1>
+                      <p className='text-white capitalize text-sm leading-5 break-words'>{best.descricao != null
+                        ? best.descricao.length > 130
+                          ? best.descricao.slice(0, 130) + "..."
+                          : best.descricao
+                        : ""}</p>
+                    </div>
 
-              </div>
-            </SplideSlide>
-          ))}
-        </Splide>
-      </div>
-      <div>ola</div>
-    </main>
+                  </div>
+                </SplideSlide>
+              ))}
+            </Splide>
+          </div>
+          <div className='flex flex-col justify-center items-center w-[80%] h-fit'>
+            <div className='w-[60%] flex justify-between items-center'>
+              {company.map((comp, index) => (
+                <div title={comp.name} key={`profile${index}`} id={`satrt${index}`} className='cursor-pointer w-[50px] h-[50px] bg-white rounded-full overflow-hidden'>
+                  <Image src={`${comp.image}`} alt='d' width={500} height={500} className='object-cover w-full h-full' />
+                  <Xarrow start={`satrt${index}`} end={`name${index}`} startAnchor={'bottom'} headSize={0} strokeWidth={1} endAnchor={'top'} color={comp.color} path='grid' curveness={1} dashness={{ nonStrokeLen: 3, strokeLen: 3 }} />
+                </div>
+              ))}
+            </div>
+            <div className='w-full flex justify-between items-center mt-6'>
+              {company.map((comp, index) => (
+                <div key={`name${index}`} id={`name${index}`} className={`text-white px-3 w-[145px] text-center py-[2px] rounded`} style={{ backgroundColor: comp.color }}>{comp.name}</div>
+              ))}
+            </div>
+          </div>
+          <div className='relative  my-6 w-full px-8 h-fit flex justify-between items-start'>
+            <div className='bg-[#0d0e34] w-[75%] h-fit flex items-start flex-wrap pt-4'>
+              <Post/>
+              <Post/>
+              <Post/>
+              <Post/>
+              <Post/>
+              <Post/>
+            </div>
+            <div className='bg-[#0d0e34] w-[23%] h-fit p-2'>
+              ola
+            </div>
+          </div>
+        </div>
+      </main>
+    </>
   )
 }
 

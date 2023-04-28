@@ -7,10 +7,10 @@
 }
 #bests button.splide__arrow{
   transform: rotate(45deg);
-  background-color: gray;
+  background-color: rgb(128, 128, 128);
   height: 60px;
   width: 60px;
-  border: 7px solid rgb(20, 20, 60);
+  border: 7px solid #0b0c2a;
   position: absolute;
   margin-top: -20px;
 }
@@ -20,10 +20,24 @@
 #bests .splide__arrow--next svg{
   transform: rotate(-45deg);
 }
-
+#bests ul{
+  margin-bottom: 50px;
+}
+#bests ul li {
+  margin-right: 5px;
+}
+#bests ul li button{
+  height: 15px;
+  width: 15px;
+  border-radius: 100%;
+  transition: 500ms;
+}
 #bests button.is-active{
-  background-color: black;
+  background-color: #0b0c2a;
 }
 body{
-  background-color: rgb(20, 20, 60);
+  background-color: #0b0c2a;
+  
 }
+/*  background-image: linear-gradient(to bottom right, #ff0000, #ff9900, #ffff00, #33cc33, #0099ff, #6633cc, #ff00ff);
+*/
