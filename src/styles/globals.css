@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-#bests svg{
+#bests svg {
   fill: black;
 }
-#bests button.splide__arrow{
+#bests button.splide__arrow {
   transform: rotate(45deg);
   background-color: rgb(91, 91, 91);
   height: 60px;
@@ -14,30 +14,29 @@
   position: absolute;
   margin-top: -20px;
 }
-#bests .splide__arrow--prev svg{
+#bests .splide__arrow--prev svg {
   transform: rotate(135deg);
 }
-#bests .splide__arrow--next svg{
+#bests .splide__arrow--next svg {
   transform: rotate(-45deg);
 }
-#bests ul{
+#bests ul {
   margin-bottom: 50px;
 }
 #bests ul li {
   margin-right: 5px;
 }
-#bests ul li button{
+#bests ul li button {
   height: 15px;
   width: 15px;
   border-radius: 100%;
   transition: 500ms;
 }
-#bests button.is-active{
+#bests button.is-active {
   background-color: #0b0c2a;
 }
-body{
+body {
   background-color: #9d9d9d;
-  
 }
 /*  background-image: linear-gradient(to bottom right, #ff0000, #ff9900, #ffff00, #33cc33, #0099ff, #6633cc, #ff00ff);
 */
